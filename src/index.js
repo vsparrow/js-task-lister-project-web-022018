@@ -23,6 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
 //called by addEventListenerForCreateTaskForm
 function getNewTask() {
   //get value from form
+  description=document.querySelector('#new-task-description')
+  priority=document.querySelector('#new-task-priority')
+  console.log(description);
+  console.log(priority);
+  //if no value in priority, make it "low"
   // update tasklist
   //update display
 }
@@ -153,7 +158,7 @@ class TaskLister {
   // your solution here
   constructor(){
     this.test = "test";
-    this.tasksList = {"thisIsATestTaskList": [{description: "someTestTask", priority: 5}] }; //test data remove after
+    this.tasksList = {"thisIsATestTaskList": [{description: "someTestTask", priority: "5"}] }; //test data remove after
     // this.tasksList = {};
     this.lastTaskListAdded = "";  //if referenced list removed, some function assign  first task to this *********
   }//end constructor
