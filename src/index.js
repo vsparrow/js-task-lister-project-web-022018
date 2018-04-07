@@ -19,10 +19,33 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
 });
+////////////////////////////////////////////////////////////////////////////////deleteList
+//called by addEventListenerToList
+function deleteList(listName) {
+  console.log("Inside deleteList, called by " + listName);
+}
+////////////////////////////////////////////////////////////////////////////////addEventListenerToList
+//called by taskBuilder
+function addEventListenerToList() {
+    lists = Array.from(document.querySelectorAll('.delete-list'));
+    // console.log("inside addEventListenerToList");
+    // console.log(lists);
+
+    for(const list of lists){
+      // console.log(list);
+      // console.log(list.dataset);
+      // console.log(list.dataset.title);  //list name
+      let listName = list.dataset.title
+      // list.addEventListener("click",()=>console.log("CLICK WORKS" + list.dataset.title))
+      // list.addEventListener("click",()=>console.log("CLICK WORKS" + listName))
+      list.addEventListener("click",()=>(deleteList(listName) ))
+    }//for
+}//addEventListenerToList
+
 ////////////////////////////////////////////////////////////////////////////////deleteTask
 //called by addEventListenerToTask
 function deleteTask(list,description) {
-  console.log("Inside deleteTask");
+  // console.log("Inside deleteTask");
   // console.log(list + " " + description);
   //delete task
   // for
@@ -95,7 +118,7 @@ function getNewTask() {
 function addEventListenerForCreateTaskForm() {
   document.getElementById("submit-create-task-form").addEventListener("click", function(event) {
      event.preventDefault();
-     console.log("SUBMIT {PRESSSED")
+     // console.log("SUBMIT {PRESSSED")
      getNewTask()
   })
 }//addEventListenerForCreateTaskForm
@@ -107,9 +130,9 @@ function makeDivOfAllLists(){
     // console.log("do we even get here?");
     let divContent = `<div><h2>${list}<button data-title="${list}" class="delete-list">X</button></h2><ul>`
     for( task of appMain.tasksList[list]){
-      console.log("task is:" +task)
-      console.log(task)
-      console.log(task["description"])
+      // console.log("task is:" +task)
+      // console.log(task)
+      // console.log(task["description"])
       if(task){
         let taskContent = `<li>"Task:${task['description']}"`
         taskContent += `<button data-list-title="${list}" data-task-name="${task['description']}" class="delete-task">X</button>`
@@ -185,6 +208,7 @@ function taskBuilder(){ //display form for adding tasks to tasks lists.
   //get input from "create-task-form" submission, add to list, display
     //add addEventListener? preventDefault to submit button
     addEventListenerForCreateTaskForm()
+    addEventListenerToList()
   //add addEventListener to each task
     addEventListenerToTask()
 }//taskBuilder
