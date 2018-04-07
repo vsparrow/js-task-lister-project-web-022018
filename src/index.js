@@ -22,14 +22,13 @@ document.addEventListener('DOMContentLoaded', () => {
 ////////////////////////////////////////////////////////////////////////////////deleteList
 //called by addEventListenerToList
 function deleteList(listName) {
-  console.log("Inside deleteList, called by " + listName);
+  // console.log("Inside deleteList, called by " + listName);
   //find list in appMain, delete key value pair
-  // console.log(appMain.tasksList[`"${listName}"`]);
-  console.log(appMain.tasksList[listName]);
-  // console.log(appMain.tasksList);
+  // console.log(appMain.tasksList[listName]);
   delete appMain.tasksList[listName]
-  console.log("post delete");
-  console.log(appMain.tasksList);
+  // console.log("post delete");
+  // console.log(appMain.tasksList);
+  console.log("DID YOU FIX : when there are no lists, create task form should be removed");
   //redraw screen
   taskBuilder()
 }//addEventListener
@@ -173,7 +172,9 @@ function displayLists(){
 function displayFormCreateTaskForm(formContent){
   let parent = document.querySelector('#app-content');
   parent.innerHTML = ""
-  parent.innerHTML = formContent;
+  if(Object.keys(appMain.tasksList).length > 0 ){
+    parent.innerHTML = formContent;
+  }
 }//displayFormCreateTaskForm
 ////////////////////////////////////////////////////////////////////////////////createSelectOptionsFromTaskListKeys
 function createSelectOptionsFromTaskListKeys() {  //called by taskBuilder
@@ -213,7 +214,10 @@ function taskBuilder(){ //display form for adding tasks to tasks lists.
     <input type="submit" value="Create New Task" id="submit-create-task-form">
   </form>`
   // createSelectOptionsFromTaskListKeys()
-  displayFormCreateTaskForm(formCreateTaskForm);
+  //*********************** add if statement here , if no lists dont run displayFormCreateTaskForm************
+  // if(Object.keys(appMain.tasksList).length > 0 ){    //when I added this the last item would not remove
+    displayFormCreateTaskForm(formCreateTaskForm);
+  // }
   displayLists()
   //get input from "create-task-form" submission, add to list, display
     //add addEventListener? preventDefault to submit button
