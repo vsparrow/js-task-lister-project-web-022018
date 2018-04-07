@@ -27,11 +27,13 @@ function createSelectOptionsFromTaskListKeys() {
   for(taskListName in appMain.tasksList){
       let option = "";
       let selected = "";
-      if (options.length == 0){selected = `selected`}
+      // if (options.length == 0){selected = `selected`}
+      if(appMain.lastTaskListAdded === taskListName){selected = `selected`}
       option = `<option value="${taskListName}" ${selected}>${taskListName}</option>`
       console.log(option)
       options += option
   }//for
+  return options
 }//createSelectOptionsFromTaskListKeys
 ////////////////////////////////////////////////////////////////////////////////taskBuilder
 //display form for adding tasks to tasks lists.
