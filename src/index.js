@@ -19,16 +19,30 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
 });
+////////////////////////////////////////////////////////////////////////////////addListContent
+//called by getNewTask
+function addListContent(description,priority,listName){
+  // let newTask = {`${description}`: `${priority}`}
+  let newTask = {[description]: priority}
+  // console.log(newTask);
+  appMain.tasksList[listName].push(newTask)
+}
 ////////////////////////////////////////////////////////////////////////////////getNewTask
 //called by addEventListenerForCreateTaskForm
 function getNewTask() {
   //get value from form
-  description=document.querySelector('#new-task-description')
-  priority=document.querySelector('#new-task-priority')
-  console.log(description);
-  console.log(priority);
+    // var e = document.getElementById("ddlViewBy");
+    // var strUser = e.options[e.selectedIndex].text;
+  let listNameElement=document.querySelector('#parent-list')
+  let listName = listNameElement.options[listNameElement.selectedIndex].text
+  let description=document.querySelector('#new-task-description').value
+  let priority=document.querySelector('#new-task-priority').value
+  // console.log(description);
+  // console.log(priority);
   //if no value in priority, make it "low"
+  if (priority.length == 0 ){priority = "low"}
   // update tasklist
+    addListContent(description,priority,listName)
   //update display
 }
 ////////////////////////////////////////////////////////////////////////////////addEventListenerForCreateTaskForm
