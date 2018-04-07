@@ -23,7 +23,16 @@ document.addEventListener('DOMContentLoaded', () => {
 //called by addEventListenerToList
 function deleteList(listName) {
   console.log("Inside deleteList, called by " + listName);
-}
+  //find list in appMain, delete key value pair
+  // console.log(appMain.tasksList[`"${listName}"`]);
+  console.log(appMain.tasksList[listName]);
+  // console.log(appMain.tasksList);
+  delete appMain.tasksList[listName]
+  console.log("post delete");
+  console.log(appMain.tasksList);
+  //redraw screen
+  taskBuilder()
+}//addEventListener
 ////////////////////////////////////////////////////////////////////////////////addEventListenerToList
 //called by taskBuilder
 function addEventListenerToList() {
@@ -186,6 +195,7 @@ function createSelectOptionsFromTaskListKeys() {  //called by taskBuilder
 //called by createNewTaskList
 //also called by getNewTask
 //also called by deleteTask
+//also called by deleteList
 function taskBuilder(){ //display form for adding tasks to tasks lists.
   // console.log("taskBuilder was called");
   //<div id="app-content"> get child node of <form id="create-task-form">
