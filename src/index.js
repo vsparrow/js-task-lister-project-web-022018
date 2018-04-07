@@ -19,8 +19,15 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
 });
+////////////////////////////////////////////////////////////////////////////////displayFormCreateTaskForm
+//called by taskBuilder
+function displayFormCreateTaskForm(formContent){
+  let parent = document.querySelector('#app-content');
+  parent.innerHTML = ""
+  parent.innerHTML = formContent;
+}//displayFormCreateTaskForm
 ////////////////////////////////////////////////////////////////////////////////createSelectOptionsFromTaskListKeys
-function createSelectOptionsFromTaskListKeys() {
+function createSelectOptionsFromTaskListKeys() {  //called by taskBuilder
   //from each tasklist name create a form list option value
   console.log("createSelectOptionsFromTaskListKeys was called");
   let options = "";
@@ -43,7 +50,7 @@ function taskBuilder(){
   let formCreateTaskForm=`<form id="create-task-form">
     <label for="parent-list">Select List:</label>
     <select id="parent-list">
-    <option value="My Dank List" selected>My Dank List</option>
+    ${createSelectOptionsFromTaskListKeys()}
     </select>
 
     <label for="new-task-description">Task description:</label>
@@ -53,7 +60,8 @@ function taskBuilder(){
     <input type="text" id="new-task-priority" placeholder="priority">
     <input type="submit" value="Create New Task">
   </form>`
-  createSelectOptionsFromTaskListKeys()
+  // createSelectOptionsFromTaskListKeys()
+  displayFormCreateTaskForm(formCreateTaskForm);
 }//taskBuilder
 
 ////////////////////////////////////////////////////////////////////////////////createNewTaskList
