@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 //called by getNewTask
 function addListContent(description,priority,listName){
   // let newTask = {`${description}`: `${priority}`}
-  let newTask = {[description]: priority}
+  let newTask = {"description": [description], "priority": priority}
   // console.log(newTask);
   appMain.tasksList[listName].push(newTask)
 }
@@ -44,6 +44,8 @@ function getNewTask() {
   // update tasklist
     addListContent(description,priority,listName)
   //update display
+  // displayLists()
+  taskBuilder()
 }
 ////////////////////////////////////////////////////////////////////////////////addEventListenerForCreateTaskForm
 //called by taskBuilder
@@ -62,8 +64,9 @@ function makeDivOfAllLists(){
     // console.log("do we even get here?");
     let divContent = `<div><h2>${list}<button data-title="${list}" class="delete-list">X</button></h2><ul>`
     for( task of appMain.tasksList[list]){
-      // console.log("task is:" +task)
-      // console.log(task)
+      console.log("task is:" +task)
+      console.log(task)
+      console.log(task["description"])
       if(task){
         let taskContent = `<li>"Task:${task['description']}"`
         taskContent += `<button data-list-title="${list}" data-task-name="${task['description']}" class="delete-task">X</button>`
