@@ -19,6 +19,23 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
 });
+////////////////////////////////////////////////////////////////////////////////addEventListenerToTask
+//called by taskBuilder
+function addEventListenerToTask() {
+  //create array from nodelist
+  tasks = Array.from(document.querySelectorAll('.delete-task'));
+  // console.log("IN addEventListener");
+  for(const task of tasks){
+    // console.log(tasks);
+    // console.log(task);
+    // console.log(task.dataset);
+    console.log(task.dataset.listTitle);  //list name
+    console.log(task.dataset.taskName);   //task description
+    // console.log(tasks[0]["data-list-title"].value);
+    // console.log(tasks[0]["data-task-name"].value);
+    task.addEventListener("click",()=>console.log("CLICK WORKS"))
+  }
+}
 ////////////////////////////////////////////////////////////////////////////////addListContent
 //called by getNewTask
 function addListContent(description,priority,listName){
@@ -117,8 +134,9 @@ function createSelectOptionsFromTaskListKeys() {  //called by taskBuilder
   return options
 }//createSelectOptionsFromTaskListKeys
 ////////////////////////////////////////////////////////////////////////////////taskBuilder
-//display form for adding tasks to tasks lists.
-function taskBuilder(){
+//called by createNewTaskList
+//also called by getNewTask
+function taskBuilder(){ //display form for adding tasks to tasks lists.
   // console.log("taskBuilder was called");
   //<div id="app-content"> get child node of <form id="create-task-form">
   let formCreateTaskForm=`<form id="create-task-form">
@@ -140,6 +158,8 @@ function taskBuilder(){
   //get input from "create-task-form" submission, add to list, display
     //add addEventListener? preventDefault to submit button
     addEventListenerForCreateTaskForm()
+  //add addEventListener to each task
+    addEventListenerToTask()
 }//taskBuilder
 
 ////////////////////////////////////////////////////////////////////////////////createNewTaskList
