@@ -23,10 +23,24 @@ document.addEventListener('DOMContentLoaded', () => {
 //called by addEventListenerToTask
 function deleteTask(list,description) {
   console.log("Inside deleteTask");
-  console.log(list + " " + description);
+  // console.log(list + " " + description);
   //delete task
-
+  // for
+  // console.log(appMain.tasksList[`${list}`]);
+  let listArray=appMain.tasksList[`${list}`]
+  let descriptionIndex= null;
+  listArray.forEach((element,index,array)=>{
+    // console.log("element:");
+    // console.log(element);
+    if(element["description"]==description){
+      descriptionIndex = index
+    }//if
+  })//forEach
+  // console.log("index is " +descriptionIndex);
+  //slice around descriptionIndex
+  if(descriptionIndex != null) {listArray.splice(descriptionIndex,1)}
   //call taskBuilder to refesh page
+  taskBuilder()
 }
 ////////////////////////////////////////////////////////////////////////////////addEventListenerToTask
 //called by taskBuilder
@@ -148,6 +162,7 @@ function createSelectOptionsFromTaskListKeys() {  //called by taskBuilder
 ////////////////////////////////////////////////////////////////////////////////taskBuilder
 //called by createNewTaskList
 //also called by getNewTask
+//also called by deleteTask
 function taskBuilder(){ //display form for adding tasks to tasks lists.
   // console.log("taskBuilder was called");
   //<div id="app-content"> get child node of <form id="create-task-form">
