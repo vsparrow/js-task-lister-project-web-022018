@@ -19,6 +19,15 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
 });
+////////////////////////////////////////////////////////////////////////////////deleteTask
+//called by addEventListenerToTask
+function deleteTask(list,description) {
+  console.log("Inside deleteTask");
+  console.log(list + " " + description);
+  //delete task
+
+  //call taskBuilder to refesh page
+}
 ////////////////////////////////////////////////////////////////////////////////addEventListenerToTask
 //called by taskBuilder
 function addEventListenerToTask() {
@@ -29,13 +38,16 @@ function addEventListenerToTask() {
     // console.log(tasks);
     // console.log(task);
     // console.log(task.dataset);
-    console.log(task.dataset.listTitle);  //list name
-    console.log(task.dataset.taskName);   //task description
+    // console.log(task.dataset.listTitle);  //list name
+    // console.log(task.dataset.taskName);   //task description
+    let list = task.dataset.listTitle
+    let description = task.dataset.taskName
     // console.log(tasks[0]["data-list-title"].value);
     // console.log(tasks[0]["data-task-name"].value);
-    task.addEventListener("click",()=>console.log("CLICK WORKS"))
-  }
-}
+    // task.addEventListener("click",()=>console.log("CLICK WORKS" + task.dataset.listTitle))
+    task.addEventListener("click",()=>(deleteTask(list,description) ))
+  }//for
+}//addEventListenerToTask
 ////////////////////////////////////////////////////////////////////////////////addListContent
 //called by getNewTask
 function addListContent(description,priority,listName){
