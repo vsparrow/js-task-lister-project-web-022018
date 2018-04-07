@@ -19,6 +19,41 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
 });
+////////////////////////////////////////////////////////////////////////////////createSelectOptionsFromTaskListKeys
+function createSelectOptionsFromTaskListKeys() {
+  //from each tasklist name create a form list option value
+  console.log("createSelectOptionsFromTaskListKeys was called");
+  let options = "";
+  for(taskListName in appMain.tasksList){
+      let option = "";
+      let selected = "";
+      if (options.length == 0){selected = `selected`}
+      option = `<option value="${taskListName}" ${selected}>${taskListName}</option>`
+      console.log(option)
+      options += option
+  }//for
+}//createSelectOptionsFromTaskListKeys
+////////////////////////////////////////////////////////////////////////////////taskBuilder
+//display form for adding tasks to tasks lists.
+function taskBuilder(){
+  console.log("taskBuilder was called");
+  //<div id="app-content"> get child node of <form id="create-task-form">
+  let formCreateTaskForm=`<form id="create-task-form">
+    <label for="parent-list">Select List:</label>
+    <select id="parent-list">
+    <option value="My Dank List" selected>My Dank List</option>
+    </select>
+
+    <label for="new-task-description">Task description:</label>
+    <input required type="text" id="new-task-description" placeholder="description">
+
+    <label for="new-task-priority">Priority level:</label>
+    <input type="text" id="new-task-priority" placeholder="priority">
+    <input type="submit" value="Create New Task">
+  </form>`
+  createSelectOptionsFromTaskListKeys()
+}//taskBuilder
+
 ////////////////////////////////////////////////////////////////////////////////createNewTaskList
  //add variable name as key to the appMain.tasksList hash
 function createNewTaskList(name){
@@ -28,8 +63,10 @@ function createNewTaskList(name){
   // console.log(appMain.tasks[0])
   // this.tasks = {"thisIsATestTaskList": [{description: "someTestTask", priority: 5}] };
   appMain.tasksList[name]=[];
+  appMain.lastTaskListAdded=name;
   console.log(appMain.tasksList)
   //now call on taskBuilder. no neeed to pass a variable
+  taskBuilder()
 }//createNewTaskList
 
 ////////////////////////////////////////////////////////////////////////////////getNewTaskListName
@@ -51,6 +88,7 @@ class TaskLister {
   constructor(){
     this.test = "test";
     this.tasksList = {"thisIsATestTaskList": [{description: "someTestTask", priority: 5}] };
+    this.lastTaskListAdded = "";
   }//end constructor
 
   render() {
