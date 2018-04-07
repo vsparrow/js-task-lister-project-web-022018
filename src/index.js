@@ -124,11 +124,14 @@ function getNewTask() {
 ////////////////////////////////////////////////////////////////////////////////addEventListenerForCreateTaskForm
 //called by taskBuilder
 function addEventListenerForCreateTaskForm() {
-  document.getElementById("submit-create-task-form").addEventListener("click", function(event) {
-     event.preventDefault();
-     // console.log("SUBMIT {PRESSSED")
-     getNewTask()
-  })
+  submitButton = document.getElementById("submit-create-task-form")
+  if(submitButton){
+    submitButton.addEventListener("click", function(event) {
+       event.preventDefault();
+       // console.log("SUBMIT {PRESSSED")
+       getNewTask()
+    })
+  }  
 }//addEventListenerForCreateTaskForm
 ////////////////////////////////////////////////////////////////////////////////makeDivOfAllLists
 //called by displayLists
@@ -248,7 +251,10 @@ function getNewTaskListName(){
   let newListName=document.getElementById("new-list-title").value
   document.getElementById("new-list-title").value = ""  //move this into else below
   // if empty alert user
-  if(newListName.length == 0){alert("Tasklist title cannot be empty!")}
+  if(newListName.length == 0){
+    // alert("Tasklist title cannot be empty!")
+    alert(document.getElementById('new-list-title').validationMessage);
+  }
   else{
     // console.log(newListName)
     createNewTaskList(newListName)//generateListEntries
@@ -260,8 +266,8 @@ class TaskLister {
   // your solution here
   constructor(){
     this.test = "test";
-    this.tasksList = {"thisIsATestTaskList": [{description: "someTestTask", priority: "5"}] }; //test data remove after
-    // this.tasksList = {};
+    // this.tasksList = {"thisIsATestTaskList": [{description: "someTestTask", priority: "5"}] }; //test data remove after
+    this.tasksList = {};
     this.lastTaskListAdded = "";  //if referenced list removed, some function assign  first task to this *********
   }//end constructor
 
