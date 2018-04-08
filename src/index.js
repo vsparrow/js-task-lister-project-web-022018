@@ -34,7 +34,7 @@ function deleteList(listName) {
   delete appMain.tasksList[listName]
   // console.log("post delete");
   // console.log(appMain.tasksList);
-  console.log("DID YOU FIX : when there are no lists, create task form should be removed");
+  // console.log("DID YOU FIX : when there are no lists, create task form should be removed");
   //redraw screen
   taskBuilder()
 }//addEventListener
