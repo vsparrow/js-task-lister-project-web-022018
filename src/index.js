@@ -12,12 +12,18 @@ document.addEventListener('DOMContentLoaded', () => {
   appMain = app
   // console.log(app.tasks)
   //add addEventListener
-  document.getElementById("submit-create-list-form").addEventListener("click", function(event) {
-     event.preventDefault();
-     // console.log("SUBMIT {PRESSSED")
-     getNewTaskListName()
-  })
-
+  // document.getElementById("submit-create-list-form").addEventListener("click", function(event) {
+  //    event.preventDefault();
+  //    // console.log("SUBMIT {PRESSSED")
+  //    getNewTaskListName()
+  // })
+  let e=document.getElementById("create-list-form")
+  // .submit(function(event) {
+  //    event.preventDefault();
+  //    // console.log("SUBMIT {PRESSSED")
+  //    // getNewTaskListName()
+  // })
+  e.addEventListener("submit", function(event) {event.preventDefault(); getNewTaskListName()}, false)
 });
 ////////////////////////////////////////////////////////////////////////////////deleteList
 //called by addEventListenerToList
@@ -131,7 +137,7 @@ function addEventListenerForCreateTaskForm() {
        // console.log("SUBMIT {PRESSSED")
        getNewTask()
     })
-  }  
+  }
 }//addEventListenerForCreateTaskForm
 ////////////////////////////////////////////////////////////////////////////////makeDivOfAllLists
 //called by displayLists

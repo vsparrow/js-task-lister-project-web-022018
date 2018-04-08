@@ -1,5 +1,17 @@
 issues:
+
+c)if list title is blank requered validation alert not popping up rather an alert popup  needed
+
+
+
+Maybe:
 a)can only have 3 lists, unlike demo which can have many....
+appears I may have closed something?
+reran test and added 9 boxes all 9 showed up
+
+
+DONE:
+
 b)when all lists removed get this error
     Uncaught TypeError: Cannot read property 'addEventListener' of null
         at addEventListenerForCreateTaskForm (index.js:127)
@@ -10,4 +22,3 @@ b)when all lists removed get this error
     taskBuilder @ index.js:224
     deleteList @ index.js:33
     list.addEventListener @ index.js:49
-c)if list title is blank requered validation alert not popping up rather an alert popup  needed
